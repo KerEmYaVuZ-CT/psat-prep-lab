@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PSAT Prep Lab | Practice Test</title>
+<style>
+:root{--navy:#10234d;--blue:#2457d6;--blue2:#eaf0ff;--ink:#182235;--muted:#68738a;--line:#dfe5ef;--bg:#f4f6fa;--good:#16834b;--bad:#c43d3d;--warn:#a76a00}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:var(--bg)}
+button,input{font:inherit}button{cursor:pointer}
+.top{background:var(--navy);color:#fff;padding:16px 22px;position:sticky;top:0;z-index:20;box-shadow:0 3px 18px #0003}
+.topin{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:900;font-size:20px}.brand small{display:block;font-weight:500;opacity:.7;font-size:11px;margin-top:2px}
+.timer{font-size:18px;font-weight:900;background:#fff1;border:1px solid #fff3;padding:9px 14px;border-radius:10px}.timer.danger{background:#8e2929}
+.wrap{max-width:1180px;margin:25px auto;padding:0 16px}.screen{display:none}.screen.active{display:block}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 5px 25px #172b4d10}
+.hero{padding:34px}.hero h1{font-size:38px;line-height:1.05;margin:0 0 12px}.hero p{color:var(--muted);max-width:720px;font-size:16px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}.stat{background:#f7f9fc;border:1px solid var(--line);padding:18px;border-radius:13px}.stat b{font-size:25px;display:block}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.primary{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:12px 18px;font-weight:800}.secondary{background:#eef2f8;color:#253452;border:0;border-radius:10px;padding:12px 18px;font-weight:800}.dangerbtn{background:#fff0f0;color:#b42d2d;border:1px solid #f0c9c9;border-radius:10px;padding:12px 18px;font-weight:800}
+.namebox{margin:20px 0}.namebox input{width:100%;max-width:430px;padding:13px;border:1px solid var(--line);border-radius:10px}
+.instructions{margin-top:18px;padding:20px}.instructions li{margin:8px 0;color:#4d586d}
+.testbar{background:#fff;border:1px solid var(--line);padding:12px 15px;border-radius:12px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.tabs{display:flex;gap:6px}.tab{border:0;background:#edf1f7;padding:8px 12px;border-radius:8px;font-weight:800}.tab.active{background:var(--blue);color:white}
+.testlayout{display:grid;grid-template-columns:1fr 265px;gap:15px}.questioncard{padding:25px;min-height:530px}.qmeta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.domain{background:#f0f3f8;padding:5px 8px;border-radius:7px}
+.passage{background:#f8fafc;border-left:4px solid var(--blue);padding:16px;line-height:1.65;margin:18px 0;border-radius:7px}.qtext{font-size:19px;font-weight:700;line-height:1.5;margin:18px 0}
+.option{display:block;border:1px solid var(--line);border-radius:10px;padding:13px;margin:9px 0;cursor:pointer}.option:hover{border-color:#8ca6ec;background:#f7f9ff}.option.selected{border-color:var(--blue);background:var(--blue2)}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:25px}.side{padding:18px;height:max-content}.side h3{margin-top:0}.qgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.qbtn{border:1px solid var(--line);background:white;border-radius:7px;padding:8px 2px;font-weight:700}.qbtn.answered{background:#e8f5ed;border-color:#9ad1ae}.qbtn.current{outline:2px solid var(--blue)}.qbtn.flag{box-shadow:inset 0 -3px #e5a321}.legend{font-size:12px;color:var(--muted);line-height:1.8;margin-top:14px}
+.resultsHero{text-align:center;padding:28px}.score{font-size:64px;font-weight:950;color:var(--blue);line-height:1}.scorelabel{color:var(--muted)}.analytics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.metric{padding:18px}.metric h3{font-size:13px;color:var(--muted);margin:0 0 7px}.metric b{font-size:25px}.bar{height:9px;background:#e9edf3;border-radius:20px;overflow:hidden;margin-top:10px}.fill{height:100%;background:var(--blue)}
+.section{padding:22px;margin-top:15px}.domainrow{margin:15px 0}.domainhead{display:flex;justify-content:space-between;font-weight:750;font-size:14px}.reviewitem{padding:14px 0;border-top:1px solid var(--line)}.good{color:var(--good);font-weight:800}.bad{color:var(--bad);font-weight:800}.history table{width:100%;border-collapse:collapse}.history th,.history td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}
+@media(max-width:800px){.testlayout{grid-template-columns:1fr}.analytics{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero h1{font-size:30px}.side{order:-1}.questioncard{min-height:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+<div class="topin"><div class="brand">PSAT PREP LAB<small>Practice • Analyze • Improve</small></div><div id="timer" class="timer">45:00</div></div>
+</header>
+
+<main class="wrap">
+<section id="home" class="screen active">
+<div class="card hero">
+<h1>PSAT Practice Test</h1>
+<p>A focused digital practice experience with Reading & Writing, Math, timed testing, question navigation, estimated scoring, domain analytics, and progress tracking.</p>
+<div class="namebox"><label><b>Student name</b></label><br><input id="studentName" placeholder="Enter your name"></div>
+<div class="grid"><div class="stat"><b>12</b>Reading & Writing</div><div class="stat"><b>15</b>Math</div><div class="stat"><b>45:00</b>Practice time</div></div>
+<div class="instructions card">
+<b>Before you begin</b>
+<ul><li>Answer 27 questions.</li><li>You can move between questions and flag questions for review.</li><li>Your score is an estimate for this custom mini-test, not an official College Board score.</li><li>Results are saved in this browser so you can track progress.</li></ul>
+</div>
+<div class="actions"><button class="primary" onclick="startTest()">Start Practice Test</button><button class="secondary" onclick="showHistory()">View Score History</button></div>
+</div>
+</section>
+
+<section id="test" class="screen">
+<div class="testbar"><div class="tabs"><button id="rwTab" class="tab active" onclick="switchSection('rw')">Reading & Writing</button><button id="mathTab" class="tab" onclick="switchSection('math')">Math</button></div><div><button class="secondary" onclick="confirmSubmit()">Submit Test</button></div></div>
+<div class="testlayout"><div class="card questioncard" id="questionArea"></div><aside class="card side"><h3>Questions</h3><div class="qgrid" id="qgrid"></div><div class="legend">Green = answered<br>Blue outline = current<br>Gold line = flagged</div><button id="flagBtn" class="secondary" style="width:100%;margin-top:14px" onclick="toggleFlag()">Flag for Review</button></aside></div>
+</section>
+
+<section id="results" class="screen">
+<div class="card resultsHero"><div>Your Estimated PSAT Practice Score</div><div id="totalScore" class="score">—</div><div class="scorelabel">400–1600 scale • custom practice estimate</div><p id="message"></p><div class="actions" style="justify-content:center;margin-top:16px"><button class="primary" onclick="startTest()">Take Another Test</button><button class="secondary" onclick="showHistory()">View History</button></div></div>
+<div class="analytics">
+<div class="card metric"><h3>Reading & Writing</h3><b id="rwScore">—</b><div class="bar"><div id="rwFill" class="fill"></div></div><span id="rwPct"></span></div>
+<div class="card metric"><h3>Math</h3><b id="mathScore">—</b><div class="bar"><div id="mathFill" class="fill"></div></div><span id="mathPct"></span></div>
+<div class="card metric"><h3>Questions Correct</h3><b id="correct">—</b><br><span id="accuracy"></span></div>
+<div class="card metric"><h3>Time Used</h3><b id="used">—</b><br><span id="timeNote"></span></div>
+</div>
+<div class="card section"><h2>Skill Analytics</h2><div id="domains"></div></div>
+<div class="card section"><h2>Question Review</h2><div id="review"></div></div>
+</section>
+
+<section id="history" class="screen">
+<div class="card section history"><h2>Score History</h2><p style="color:var(--muted)">Your results are stored locally in this browser.</p><div id="historyTable"></div><br><button class="secondary" onclick="show('home')">Back to Home</button> <button class="dangerbtn" onclick="clearHistory()">Clear History</button></div>
+</section>
+</main>
+
+<script>
+const Q=[
+{sec:'rw',d:'Information and Ideas',p:'When Maya began volunteering at the community garden, she expected to spend most of her time planting vegetables. Instead, she discovered that the garden’s greatest impact was social: neighbors who rarely spoke began sharing recipes, tools, and stories.',q:'Which choice best states the main idea?',a:['The garden failed to produce enough vegetables.','Maya learned that community gardens can strengthen relationships.','Neighbors disagreed about how the garden should be managed.','Maya had already been an experienced gardener.'],x:1},
+{sec:'rw',d:'Craft and Structure',p:'The scientist’s initial findings were promising, but she remained circumspect, refusing to announce a breakthrough until the experiment had been repeated.',q:'As used in the text, “circumspect” most nearly means',a:['cautious','enthusiastic','confused','impatient'],x:0},
+{sec:'rw',d:'Expression of Ideas',q:'The city planned to replace several aging buses. ______, officials postponed the purchase after discovering that the transportation budget had been reduced.',a:['For example','However','Similarly','In addition'],x:1},
+{sec:'rw',d:'Expression of Ideas',p:'Notes: The school recycling program began in 2024. It collected 1,800 pounds of recyclable material in its first semester. Participation increased by 35% the following semester.',q:'Which choice most effectively emphasizes the program’s growth?',a:['The school started a recycling program in 2024.','The program collected recyclable material during its first semester.','After collecting 1,800 pounds in its first semester, the program saw participation rise 35% the next semester.','Many schools have recycling programs.'],x:2},
+{sec:'rw',d:'Standard English Conventions',q:'The collection of photographs, which ______ more than a century of local history, is displayed in the library.',a:['document','documents','documenting','have documented'],x:1},
+{sec:'rw',d:'Standard English Conventions',q:'The researchers reached an unexpected conclusion ______ the treatment worked best when patients received it earlier.',a:['conclusion, the treatment','conclusion; the treatment','conclusion the treatment','conclusion: the treatment'],x:3},
+{sec:'rw',d:'Information and Ideas',p:'Although electric bicycles require batteries and motors, they can consume far less energy than cars for short urban trips. They also allow riders to travel farther with less physical effort than traditional bicycles.',q:'The passage primarily emphasizes that electric bicycles',a:['are always cheaper than cars','combine energy efficiency with easier travel','require no maintenance','are better for long-distance travel than airplanes'],x:1},
+{sec:'rw',d:'Information and Ideas',p:'By the end of the first month, nearly every desk in the classroom held a small plant. Students had begun checking the soil before class and reminding one another to water the plants.',q:'Which inference is best supported?',a:['The plants distracted students.','Students developed responsibility for the plants.','The teacher required students to bring plants.','The classroom had no windows.'],x:1},
+{sec:'rw',d:'Expression of Ideas',q:'The museum’s attendance had declined for several years. ______, a new interactive exhibit attracted thousands of visitors during its opening month.',a:['Nevertheless','For instance','As a result','Likewise'],x:0},
+{sec:'rw',d:'Standard English Conventions',q:'Neither the coach nor the players ______ willing to cancel the practice session.',a:['was','were','be','has been'],x:1},
+{sec:'rw',d:'Expression of Ideas',p:'Notes: Monarch butterflies migrate thousands of miles. They rely on specific plants for reproduction. Habitat loss has reduced available breeding areas.',q:'Which choice best introduces the main conservation concern?',a:['Monarch butterflies are colorful insects.','Monarch butterflies migrate long distances each year.','Because monarch butterflies depend on particular plants to reproduce, habitat loss threatens their breeding areas.','Many people enjoy observing monarch butterflies.'],x:2},
+{sec:'rw',d:'Standard English Conventions',q:'The engineer tested three designs ______ only one could withstand the required pressure.',a:['designs, only','designs; only','designs only','designs: only'],x:1},
+
+{sec:'math',d:'Algebra',q:'If 3x + 7 = 25, what is x?',a:['4','6','8','10'],x:0},
+{sec:'math',d:'Algebra',q:'A line passes through (2, 5) and (6, 13). What is its slope?',a:['1','2','3','4'],x:1},
+{sec:'math',d:'Algebra',q:'If x + y = 11 and x − y = 3, what is x?',a:['4','6','7','8'],x:2},
+{sec:'math',d:'Advanced Math',q:'What are the solutions to x² − 9 = 0?',a:['x = 3 only','x = −3 only','x = −3 or x = 3','x = 0 or x = 9'],x:2},
+{sec:'math',d:'Problem-Solving and Data Analysis',q:'A jacket costs $80 and is discounted by 25%. What is the sale price?',a:['$20','$55','$60','$65'],x:2},
+{sec:'math',d:'Advanced Math',q:'Which expression is equivalent to (x³)(x⁵)?',a:['x⁸','x¹⁵','2x⁸','x²'],x:0},
+{sec:'math',d:'Geometry and Trigonometry',q:'A rectangle has length 12 and width 7. What is its area?',a:['19','38','84','168'],x:2},
+{sec:'math',d:'Problem-Solving and Data Analysis',q:'The data set is 4, 6, 8, 10, 12. What is the mean?',a:['6','8','9','10'],x:1},
+{sec:'math',d:'Algebra',q:'If f(x) = 2x² − 3, what is f(2)?',a:['1','5','8','11'],x:1},
+{sec:'math',d:'Problem-Solving and Data Analysis',q:'A recipe uses 3 cups of flour for every 2 cups of sugar. If 9 cups of flour are used, how many cups of sugar are needed?',a:['3','4','6','8'],x:2},
+{sec:'math',d:'Algebra',q:'A taxi charges a $4 starting fee plus $2.50 per mile. Which equation gives cost C for m miles?',a:['C = 4m + 2.50','C = 2.50m + 4','C = 6.50m','C = 4m − 2.50'],x:1},
+{sec:'math',d:'Advanced Math',q:'If x² − 5x + 6 = 0, which pair gives the solutions?',a:['1 and 6','2 and 3','−2 and −3','3 and 6'],x:1},
+{sec:'math',d:'Problem-Solving and Data Analysis',q:'A bag contains 5 red, 3 blue, and 2 green marbles. What is the probability of selecting blue?',a:['1/10','3/10','1/3','3/5'],x:1},
+{sec:'math',d:'Geometry and Trigonometry',q:'A circle has radius 5. Using π = 3.14, what is its circumference?',a:['15.7','25','31.4','78.5'],x:2},
+{sec:'math',d:'Problem-Solving and Data Analysis',q:'A value increases from 40 to 50. What is the percent increase?',a:['10%','20%','25%','40%'],x:1}
+];
+
+let state={answers:Array(Q.length).fill(null),flags:Array(Q.length).fill(false),current:0,section:'rw',start:0};
+let remaining=2700,timerInterval=null,submitted=false;
+
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function startTest(){state={answers:Array(Q.length).fill(null),flags:Array(Q.length).fill(false),current:0,section:'rw',start:Date.now()};remaining=2700;submitted=false;show('test');render();clearInterval(timerInterval);timerInterval=setInterval(tick,1000);tick();}
+function tick(){if(submitted)return;remaining--;if(remaining<=0){remaining=0;submitTest(true)}let m=String(Math.floor(remaining/60)).padStart(2,'0'),s=String(remaining%60).padStart(2,'0');let el=document.getElementById('timer');el.textContent=m+':'+s;el.classList.toggle('danger',remaining<=300);}
+function switchSection(sec){state.section=sec;state.current=Q.findIndex(x=>x.sec===sec);render();}
+function render(){
+ let q=Q[state.current];document.getElementById('rwTab').classList.toggle('active',state.section==='rw');document.getElementById('mathTab').classList.toggle('active',state.section==='math');
+ let p=q.p?`<div class="passage">${q.p}</div>`:'';
+ document.getElementById('questionArea').innerHTML=`<div class="qmeta"><span>Question ${state.current+1} of ${Q.length}</span><span class="domain">${q.d}</span></div>${p}<div class="qtext">${q.q}</div>${q.a.map((a,i)=>`<label class="option ${state.answers[state.current]===i?'selected':''}" onclick="choose(${i})"><input type="radio" name="opt" ${state.answers[state.current]===i?'checked':''}> <b>${String.fromCharCode(65+i)}.</b> ${a}</label>`).join('')}<div class="nav"><button class="secondary" onclick="prevQ()">← Previous</button><button class="secondary" onclick="toggleFlag()">${state.flags[state.current]?'★ Unflag':'☆ Flag'}</button><button class="primary" onclick="nextQ()">${state.current===Q.length-1?'Finish →':'Next →'}</button></div>`;
+ document.getElementById('flagBtn').textContent=state.flags[state.current]?'★ Unflag Question':'☆ Flag for Review';
+ let grid='';Q.forEach((x,i)=>grid+=`<button class="qbtn ${state.answers[i]!==null?'answered':''} ${i===state.current?'current':''} ${state.flags[i]?'flag':''}" onclick="goQ(${i})">${i+1}</button>`);document.getElementById('qgrid').innerHTML=grid;
+}
+function choose(i){state.answers[state.current]=i;render()}
+function goQ(i){state.current=i;state.section=Q[i].sec;render()}
+function nextQ(){if(state.current<Q.length-1){state.current++;state.section=Q[state.current].sec;render()}else confirmSubmit()}
+function prevQ(){if(state.current>0){state.current--;state.section=Q[state.current].sec;render()}}
+function toggleFlag(){state.flags[state.current]=!state.flags[state.current];render()}
+function confirmSubmit(){let unanswered=state.answers.filter(x=>x===null).length;if(confirm(unanswered?`You have ${unanswered} unanswered question(s). Submit anyway?`:'Submit your test and calculate your results?'))submitTest(false)}
+function submitTest(auto){if(submitted)return;submitted=true;clearInterval(timerInterval);let correct=0,rw=0,math=0;let domain={};Q.forEach((q,i)=>{domain[q.d]??={correct:0,total:0};domain[q.d].total++;if(state.answers[i]===q.x){correct++;domain[q.d].correct++;if(q.sec==='rw')rw++;else math++;}});
+let rwScore=Math.round(200+rw/12*600),mathScore=Math.round(200+math/15*600),total=rwScore+mathScore;let used=2700-remaining;let mm=String(Math.floor(used/60)).padStart(2,'0'),ss=String(used%60).padStart(2,'0');
+document.getElementById('totalScore').textContent=total;document.getElementById('rwScore').textContent=rwScore+' / 800';document.getElementById('mathScore').textContent=mathScore+' / 800';document.getElementById('rwFill').style.width=(rw/12*100)+'%';document.getElementById('mathFill').style.width=(math/15*100)+'%';document.getElementById('rwPct').textContent=`${rw}/12 correct (${Math.round(rw/12*100)}%)`;document.getElementById('mathPct').textContent=`${math}/15 correct (${Math.round(math/15*100)}%)`;document.getElementById('correct').textContent=`${correct} / 27`;document.getElementById('accuracy').textContent=`${Math.round(correct/27*100)}% accuracy`;document.getElementById('used').textContent=mm+':'+ss;document.getElementById('timeNote').textContent=auto?'Time expired.':'Completed before time expired.';
+document.getElementById('message').textContent=total>=1400?'Excellent performance — now work on precision and speed.':total>=1200?'Strong performance — target the domains below with the lowest accuracy.':total>=1000?'Good foundation — focused practice can raise your score.':'Use your skill analytics to guide your next practice session.';
+document.getElementById('domains').innerHTML=Object.entries(domain).map(([d,v])=>`<div class="domainrow"><div class="domainhead"><span>${d}</span><span>${v.correct}/${v.total} (${Math.round(v.correct/v.total*100)}%)</span></div><div class="bar"><div class="fill" style="width:${v.correct/v.total*100}%"></div></div></div>`).join('');
+document.getElementById('review').innerHTML=Q.map((q,i)=>{let ok=state.answers[i]===q.x;let ans=state.answers[i]===null?'No answer':`${String.fromCharCode(65+state.answers[i])}. ${q.a[state.answers[i]]}`;return `<div class="reviewitem"><b>${i+1}. ${q.d}</b> — <span class="${ok?'good':'bad'}">${ok?'Correct':'Review'}</span><br>Your answer: ${ans}${ok?'':`<br>Correct answer: ${String.fromCharCode(65+q.x)}. ${q.a[q.x]}`}</div>`}).join('');
+saveHistory({name:document.getElementById('studentName').value||'Student',date:new Date().toLocaleString(),total,rwScore,mathScore,correct,time:mm+':'+ss});show('results');window.scrollTo(0,0);}
+function saveHistory(r){let h=JSON.parse(localStorage.getItem('psatHistory')||'[]');h.unshift(r);localStorage.setItem('psatHistory',JSON.stringify(h.slice(0,20)))}
+function showHistory(){let h=JSON.parse(localStorage.getItem('psatHistory')||'[]');document.getElementById('historyTable').innerHTML=h.length?`<table><tr><th>Date</th><th>Student</th><th>Total</th><th>R&W</th><th>Math</th><th>Correct</th></tr>${h.map(x=>`<tr><td>${x.date}</td><td>${x.name}</td><td><b>${x.total}</b></td><td>${x.rwScore}</td><td>${x.mathScore}</td><td>${x.correct}/27</td></tr>`).join('')}</table>`:'<p>No tests completed yet.</p>';show('history');}
+function clearHistory(){if(confirm('Delete all saved score history?')){localStorage.removeItem('psatHistory');showHistory()}}
+</script>
+</body>
+</html>
